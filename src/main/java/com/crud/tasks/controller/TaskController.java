@@ -15,11 +15,9 @@ public class TaskController {
     public List<TaskDto> getTasks() {
         return new ArrayList<>();
     }
-
     public TaskDto getTask(Long id) {
         return new TaskDto(1L, "testTitle", "testContent");
     }
-
     public void deleteTask(Long id) {
     }
 
