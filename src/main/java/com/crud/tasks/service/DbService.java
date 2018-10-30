@@ -15,8 +15,8 @@ import java.util.Optional;
 public class DbService {
     @Autowired
     private TaskRepository repository;
-    @Autowired
-    TaskMapper mapper;
+//    @Autowired
+//    TaskMapper mapper;
 
     public List<Task> getAllTasksDb() {
         return repository.findAll();
@@ -27,6 +27,8 @@ public class DbService {
     public Task saveTask(final Task task) {
         return repository.save(task);
     }
-
-
+    public Optional<Task> getTask(final Long id){
+        return repository.findById(id);
+    }
+    public void deleteTask(final Long id){repository.deleteById(id);}
 }
