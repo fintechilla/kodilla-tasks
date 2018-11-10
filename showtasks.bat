@@ -2,7 +2,7 @@ echo starting... showtasks.bat
 echo running... runcrud.bat
 call runcrud.bat
 
-if %ERRORLEVEL% == 0 goto startbrowser
+if "%ERRORLEVEL%" == "0" goto startbrowser
 echo There was a problem with runcrud.bat
 goto end
 
