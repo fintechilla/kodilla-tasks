@@ -34,5 +34,5 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 
-	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")//using an external to IJ Tomcat
+	//providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")//using an external to IJ Tomcat
 }
