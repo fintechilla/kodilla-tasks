@@ -7,17 +7,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.PrimitiveIterator;
 
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown=true)
-public class TrelloBoardDto {
-    @JsonProperty("id")
-    private String id;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("lists")
-    private List<TrelloListDto> lists;
-
+@Getter
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Badges {
+    @JsonProperty("votes")
+    private Integer votes;
+    @JsonProperty("attachmentsByType")
+    private AttachmentByType attachment;
 }
