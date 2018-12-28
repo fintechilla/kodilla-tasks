@@ -58,8 +58,8 @@ public class TrelloClientTest {
             when(trelloConfig.getTrelloAppKey()).thenReturn("test");
             when(trelloConfig.getTrelloAppToken()).thenReturn("test");
 
-            TrelloBoardDto[] trelloBoards = null;
-            trelloBoards[0] = new TrelloBoardDto("test id", "test board",new ArrayList<>());
+            TrelloBoardDto[] trelloBoards = new TrelloBoardDto[1];
+            trelloBoards[0] = null; //new TrelloBoardDto("test id", "test board",new ArrayList<>());
 
             URI uri = null;
             try {
@@ -67,8 +67,9 @@ public class TrelloClientTest {
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
+
             when(trelloConfig.getTrelloAppUsername()).thenReturn("slawekhenrykwalerys");
-            when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(trelloBoards);
+            when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(null);
 
             //When
             List<TrelloBoardDto> fetchedTrelloBoards = trelloClient.getTrelloBoards();
