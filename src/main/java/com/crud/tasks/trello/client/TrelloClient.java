@@ -42,18 +42,21 @@ public class TrelloClient<T> {
                 .queryParam("lists", "all")
                 .build().encode().toUri();
 
-        System.out.println("@@@@@@@@@@@@@Inside getTrelloBoards before getting a response@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        System.out.println("URI: " + url);
-
+        LOGGER.info("@@@@@@@@@@@@@Inside getTrelloBoards before getting a response@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        LOGGER.info("URI: " + url);
+        LOGGER.info("GetTrelloBoards:  - DONE!");
         try {
             TrelloBoardDto[] boardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
+            LOGGER.info("GetTrelloBoards - SUCCESS!!" + " boardsResponse: " + boardsResponse);
             return Arrays.asList(Optional.ofNullable(boardsResponse).orElse(new TrelloBoardDto[0]));
         }catch (RestClientException e) {
             LOGGER.error(e.getMessage(), e);
+            LOGGER.info("GetTrelloBoards - FAILED!!");
             return new ArrayList<>();
         }
 
-        }
+    }
+
     public CreatedTrelloCard createNewCard(TrelloCardDto trelloCardDto){
         URI url = UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloApiEndpoint() + "/cards")
                 .queryParam("key", trelloConfig.getTrelloAppKey())
@@ -63,6 +66,7 @@ public class TrelloClient<T> {
                 .queryParam("pos", trelloCardDto.getPos())
                 .queryParam("idList", trelloCardDto.getIdList())
                 .build().encode().toUri();
+        LOGGER.info("CreteTrelloCard - DONE!!");
         return restTemplate.postForObject(url, null, CreatedTrelloCard.class);
     }
 }
