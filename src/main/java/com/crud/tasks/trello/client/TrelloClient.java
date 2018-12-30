@@ -56,7 +56,7 @@ public class TrelloClient<T> {
         }
 
     }
-
+    @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
     public CreatedTrelloCard createNewCard(TrelloCardDto trelloCardDto){
         URI url = UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloApiEndpoint() + "/cards")
                 .queryParam("key", trelloConfig.getTrelloAppKey())
