@@ -33,7 +33,7 @@ public class TrelloClient<T> {
         return trelloConfig.getTrelloApiEndpoint() + "/members/" + trelloConfig.getTrelloAppUsername() + "/boards";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
+    //@RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
     public List<TrelloBoardDto> getTrelloBoards(){
         URI url = UriComponentsBuilder.fromHttpUrl(buildUrl())
                 .queryParam("key", trelloConfig.getTrelloAppKey())
@@ -56,7 +56,7 @@ public class TrelloClient<T> {
         }
 
     }
-    @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
+    //@RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
     public CreatedTrelloCard createNewCard(TrelloCardDto trelloCardDto){
         URI url = UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloApiEndpoint() + "/cards")
                 .queryParam("key", trelloConfig.getTrelloAppKey())
