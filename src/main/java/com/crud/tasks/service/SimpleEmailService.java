@@ -15,19 +15,23 @@ public class SimpleEmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public void send(final Mail mail){
+    public void send(final Mail mail) {
         LOGGER.info("Starting email preparation...");
         try {
             javaMailSender.send(createMailMessage(mail));
             LOGGER.info("Email has been sent");
-        } catch (MailException e){
+        } catch (MailException e) {
             LOGGER.error("Failed to process email sending: ", e.getMessage(), e);
         }
     }
-    private SimpleMailMessage createMailMessage(final Mail mail){
+
+    private SimpleMailMessage createMailMessage(final Mail mail) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
-        mailMessage.setCc(mail.getToCc());
+        //In case cc is not assigned
+        if (mail.getToCc() != null){
+            mailMessage.setCc(mail.getToCc());
+        }
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
         return mailMessage;
