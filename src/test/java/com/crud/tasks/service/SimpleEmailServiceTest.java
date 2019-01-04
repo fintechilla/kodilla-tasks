@@ -10,6 +10,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 //import static com.sun.javaws.JnlpxArgs.verify;
+import static java.util.Optional.ofNullable;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -29,9 +30,10 @@ public class SimpleEmailServiceTest {
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
-        if(mail.getToCc() != null){
-            mailMessage.setCc(mail.getToCc());
-        }
+        ofNullable(mail.getToCc()).ifPresent(cc -> mailMessage.setCc(cc));
+//        if(mail.getToCc() != null){
+//            mailMessage.setCc(mail.getToCc());
+//        }
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
 

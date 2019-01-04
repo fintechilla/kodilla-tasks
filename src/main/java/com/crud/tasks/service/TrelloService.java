@@ -19,7 +19,6 @@ public class TrelloService {
     private AdminConfig adminConfig;
     @Autowired
     private TrelloClient trelloClient;
-
     @Autowired
     private SimpleEmailService emailService;
 
