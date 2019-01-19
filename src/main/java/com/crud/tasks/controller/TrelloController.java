@@ -1,14 +1,13 @@
 package com.crud.tasks.controller;
 
-import com.crud.tasks.domain.CreatedTrelloCard;
+import com.crud.tasks.domain.CreatedTrelloCardDto;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.service.TrelloService;
-import com.crud.tasks.trello.client.TrelloClient;
+import com.crud.tasks.trello.facade.TrelloFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -16,12 +15,17 @@ import java.util.List;
 @RequestMapping("/v1/trello")
 public class TrelloController {
     @Autowired
-    private TrelloService trelloService;
+    private TrelloFacade trelloFacade;//TrelloService trelloService;
 
     @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
-    public List<TrelloBoardDto> getTrelloBoards() {
+    public List<TrelloBoardDto> getTrelloBoards() {return trelloFacade.fetchTrelloBoards(); }
 
-        List<TrelloBoardDto> trelloBoards = trelloService.fetchTrelloBoards();
+    @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
+    public CreatedTrelloCardDto createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+        return trelloFacade.createCard(trelloCardDto);  //Service  Trello
+    }
+
+        //List<TrelloBoardDto> trelloBoards =  //Service
 //        Date date = new Date();
 //        System.out.println("Current time is: " + date.toString());
 //        //filter for Kodilla
@@ -33,12 +37,5 @@ public class TrelloController {
 //                            + trelloList.getId() + " - "
 //                            + trelloList.isClosed()));
 //        });
-        return trelloBoards;
-
-    }
-
-    @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
-    public CreatedTrelloCard createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-        return trelloService.createTrelloCard(trelloCardDto);
-    }
+        //return trelloBoards;
 }
