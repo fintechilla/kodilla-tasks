@@ -26,6 +26,7 @@ public class TrelloValidator {
         List<TrelloBoard>filteredBoards = trelloBoards.stream()
                 .filter(trelloBoard->!trelloBoard.getName().equalsIgnoreCase("test"))
                 .collect(Collectors.toList());
+        System.out.println("Sout: Boards have been filtered. Current list size: " + filteredBoards.size());
         LOGGER.info("Boards have been filtered. Current list size: " + filteredBoards.size());
         return filteredBoards;
     }

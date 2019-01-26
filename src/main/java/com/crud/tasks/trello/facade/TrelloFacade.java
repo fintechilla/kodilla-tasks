@@ -22,10 +22,10 @@ public class TrelloFacade {
     private TrelloValidator trelloValidator;
 
     public List<TrelloBoardDto> fetchTrelloBoards(){
-        System.out.println("In TrelloFacade before trelloMapper");
         List<TrelloBoard> trelloBoards = trelloMapper.mapToBoards(trelloService.fetchTrelloBoards());
-        System.out.println("In TrelloFacade before trelloValidator");
+
         List<TrelloBoard> filteredBoards = trelloValidator.validateTrelloBoards(trelloBoards);
+
         return trelloMapper.mapToBoardsDto(filteredBoards);
     }
 

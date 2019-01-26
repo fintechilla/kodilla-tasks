@@ -25,7 +25,6 @@ public class TrelloService {
     private static final String SUBJECT = "Tasks: New Trello card";
 
     public List<TrelloBoardDto> fetchTrelloBoards() {
-        System.out.println("In TrelloService.fetchTrelloBoards before trelloClient");
         return trelloClient.getTrelloBoards();
     }
 

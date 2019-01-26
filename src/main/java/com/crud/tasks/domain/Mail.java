@@ -1,8 +1,9 @@
 package com.crud.tasks.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-
+@EqualsAndHashCode
 @Getter
 @AllArgsConstructor
 public class Mail {
@@ -16,4 +17,5 @@ public class Mail {
         this.subject = subject;
         this.message = message;
     }
+
 }
