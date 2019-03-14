@@ -3,6 +3,12 @@ package com.crud.tasks.service;
 import com.crud.tasks.domain.Task;
 import com.crud.tasks.repository.TaskRepository;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +18,13 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import java.util.Optional;
-
+//@RunWith(MockitoJUnitRunner.class)
 public class DbServiceTest {
-    TaskRepository repository;
+    @Autowired
     DbService service;
+    @Autowired
+    TaskRepository repository;
+
     @Test
     public void getAllTasksDb(){
         //Given
